@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+import  DashboardUI  from '../../components/DashboardUI'
+
+function Dashboard() {
+  return <DashboardUI/>
+=======
+import { DashboardCard } from '../../components/Cards'
+
+function Dashboard() {
+  return (
+    <DashboardCard
+      imgUrl="https://picsum.photos/200"
+      title="Company title lorem ipsum"
+      description="lorem ipsum don eros lorem ipsum"
+      postedOn={2}
+    />
+  )
+>>>>>>> 33c11ae5134a306850e044efb5d53215a321be25
+}
+
+export default Dashboard

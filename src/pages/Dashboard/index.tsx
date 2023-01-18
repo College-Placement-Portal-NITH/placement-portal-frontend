@@ -1,7 +1,11 @@
+
 import  DashboardUI  from '../../components/DashboardUI'
 
 function Dashboard() {
-  return <DashboardUI/>
+  return (
+    <DashboardUI
+    />
+  )
 }
 
 export default Dashboard
