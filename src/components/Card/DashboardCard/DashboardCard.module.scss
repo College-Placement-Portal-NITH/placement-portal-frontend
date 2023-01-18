@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 .card {
   background-color: #ececec;
   display: flex;
@@ -18,8 +19,11 @@
   height: 80%;
 }
 
+.desc{
+  font-family: 'poppins';
+}
 
-.img{
+.img {
   width: 80px;
   height: 80px;
   border-radius: 5px;
@@ -41,12 +45,15 @@
   border-radius: 40px;
 }
 
-.time_stamp{
+.time_stamp {
   position: relative;
   top: 30%;
   text-align: right;
-  color: #CFD2CF;
+  color: #cfd2cf;
+  font-family: 'poppins';
 }
-.title{
+.title {
   font-size: 30px;
+  font-family: 'poppins';
+  font-weight: 600;
 }

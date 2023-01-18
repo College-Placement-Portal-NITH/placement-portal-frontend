@@ -13,7 +13,7 @@ function DashboardCard({ title, description, imgUrl, postedOn }: DashboardProps)
         <img className={styles.img} src={imgUrl} alt="companyLogo" />
         <div className={styles.container}>
           <p className={styles.title}>{title}</p>
-          <p>{description}</p>
+          <p className={styles.desc}>{description}</p>
         </div>
       </div>
       <div className={styles.separator} />
