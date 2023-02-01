@@ -8,24 +8,41 @@
 
 :root {
   --bg-color: rgb(244, 244, 244);
-  --nav-height: 64px;
+  --nav-height: 52px;
   --nav-shadow: hsla(240, 5%, 41%, 0.2) 0px 7px 29px 0px;
-  --sidebar-width: 270px;
+  --sidebar-width: 220px;
   --card-shadow: 0px 7px 29px hsla(240, 5%, 41%, 0.2);
   --custom-white-v1: rgb(252, 252, 252);
   --text-color-primary: rgb(40, 40, 40);
+  --lg-heading: 32px;
+  --md-heading: 20px;
+}
+
+@mixin thin-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      display: initial;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
   background: rgba(0, 0, 0, 0.25);
-  -webkit-transition: color 0.2s ease;
-  transition: color 0.2s ease;
 }
 
 ::-webkit-scrollbar-track {

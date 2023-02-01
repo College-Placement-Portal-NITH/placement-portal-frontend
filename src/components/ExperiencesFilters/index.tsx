@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons'
 import CheckListItem from '../CheckListItem'
 import Modal from '../Modal'
-import styles from './InterviewExperienceFilters.module.scss'
 import { ExperienceFilterProps } from '../../utils/types'
+import styles from './ExperiencesFilters.module.scss'
 
-function InterviewExperienceFilters({ isMobile = false }: ExperienceFilterProps) {
+function ExperiencesFilters({ isMobile = false }: ExperienceFilterProps) {
   const [openCompany, setOpenCompany] = useState(false)
   const [openRole, setOpenRole] = useState(false)
 
@@ -103,4 +103,4 @@ function InterviewExperienceFilters({ isMobile = false }: ExperienceFilterProps)
   )
 }
 
-export default InterviewExperienceFilters
+export default ExperiencesFilters

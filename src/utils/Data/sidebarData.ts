@@ -13,7 +13,7 @@ const navItems = [
   {
     id: 3,
     name: 'Interview History',
-    url: '/interviewhistory',
+    url: '/interview-history',
   },
   {
     id: 4,

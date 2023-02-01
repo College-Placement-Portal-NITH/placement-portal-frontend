@@ -6,6 +6,10 @@ export type RouteProps = {
   url: string
 }
 
+export interface SidebarLayoutProps {
+  children: ReactNode
+}
+
 export interface FieldInfoProps {
   label: string
   value: string | number

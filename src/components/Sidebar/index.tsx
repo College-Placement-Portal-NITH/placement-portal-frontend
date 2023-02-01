@@ -11,6 +11,7 @@ function Sidebar() {
     <div className={styles.sidebar}>
       <div className={styles.logo}>
         <img src={PortalLogo} alt="Portal Logo" />
+        <h1>NITH</h1>
       </div>
       <div className={styles.nav_items}>
         {navItems.map((navItem: RouteProps) => {

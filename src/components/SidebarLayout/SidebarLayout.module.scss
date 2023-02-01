@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+  width: 100%;
+
+  .page {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: auto;
+
+    @media screen and (max-width: 1150px) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

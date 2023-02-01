@@ -1,16 +1,14 @@
+@use '../../index.scss' as main;
+
 .page_name {
-  font-size: 40px;
+  font-size: var(--lg-heading);
   font-weight: 600;
   color: var(--text-color-primary);
-  padding: calc(3rem + var(--nav-height)) 2.5rem 1.5rem 2.5rem;
-
-  @media screen and (max-width: 1350px) {
-    padding-left: 2rem;
-  }
+  padding: calc(2rem + var(--nav-height)) 2rem 0.8rem 2rem;
 
   @media screen and (max-width: 520px) {
-    font-size: 32px;
-    padding: calc(2rem + var(--nav-height)) 1rem 0.5rem 1rem;
+    font-size: 28px;
+    padding: calc(1.5rem + var(--nav-height)) 1rem 0.5rem 1rem;
   }
 }
 
@@ -18,67 +16,58 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1rem 2.5rem;
-  gap: 1.5rem;
+  padding: 1rem 2rem;
+  gap: 1.6rem;
 
   .side_panel {
-    width: 330px;
+    width: 270px;
     position: sticky;
-    top: calc(var(--nav-height) + 2rem);
+    top: calc(var(--nav-height) + 1.6rem);
     overflow-y: auto;
-    max-height: calc((100vh - var(--nav-height) - 4rem));
+    max-height: calc((100vh - var(--nav-height) - 3rem));
     flex-shrink: 0.2;
 
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      border-radius: 5px;
-    }
+    @include main.thin-scrollbar;
 
     .sidepanel_card {
       background-color: rgb(254, 254, 254);
-      padding: 1.25rem;
-      border-radius: 10px;
+      padding: 1rem;
+      border-radius: 8px;
 
       &:last-child {
-        margin-top: 1.5rem;
+        margin-top: 1.6rem;
       }
 
       h1 {
-        font-size: 24px;
+        font-size: var(--md-heading);
         font-weight: 600;
-        color: rgb(40, 40, 40);
+        color: var(--text-color-primary);
       }
 
       .list_container {
-        padding-top: 0.25rem;
-
         .list_item {
           text-decoration: none;
           display: flex;
-          margin-top: 1.25rem;
+          margin-top: 0.8rem;
 
           .pic {
-            padding: 12px 12px;
-            margin-right: 20px;
+            padding: 8px 10px;
+            margin-right: 14px;
             align-items: center;
             background-color: rgb(245, 245, 245);
-            border-radius: 6px;
+            border-radius: 5px;
             justify-content: center;
           }
 
           .info {
             .name {
-              font-size: 16px;
+              font-size: 14px;
               color: var(--text-color-primary);
               font-weight: 600;
             }
 
             .date {
-              font-size: 0.91em;
+              font-size: 13px;
               color: rgb(181, 181, 181);
             }
           }
@@ -86,17 +75,12 @@
       }
     }
 
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: 880px) {
       display: none;
     }
   }
 
-  @media screen and (max-width: 1350px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  @media screen and (max-width: 520px) {
-    padding: 1.25rem;
+  @media screen and (max-width: 525px) {
+    padding: 1rem;
   }
 }

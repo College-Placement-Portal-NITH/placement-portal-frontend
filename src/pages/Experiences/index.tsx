@@ -1,26 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import styles from './InterviewExperience.module.scss'
+import styles from './Experiences.module.scss'
 import { ExperienceCardProps } from '../../utils/types'
-import { ExperienceCard, ExperiencesSidebar, InterviewExperienceFilters } from '../../components'
+import { ExperienceCard, ExperiencesSidebar, ExperiencesFilters } from '../../components'
 import { interviewExperienceInfoList } from '../../utils/Data/interviewExperienceData'
 
-function InterviewExperience() {
+function Experiences() {
   const [openFilters, setOpenFilters] = useState(false)
   return (
-    <div>
-      <h1 className={styles.head}>Interview Experiences</h1>
+    <>
+      <h1 className={styles.page_name}>Interview Experiences</h1>
       <div className={styles.display}>
         <div className={styles.middle_left}>
           {interviewExperienceInfoList.map((user: ExperienceCardProps) => (
-            <div key={user.id} className={styles.card_margins}>
-              <ExperienceCard {...user} />
-            </div>
+            <ExperienceCard key={user.id} {...user} />
           ))}
         </div>
         <div className={styles.middle_right}>
-          <InterviewExperienceFilters />
+          <ExperiencesFilters />
         </div>
         <div className={styles.right}>
           <FontAwesomeIcon
@@ -33,8 +31,8 @@ function InterviewExperience() {
           {openFilters && <ExperiencesSidebar setIsSidebarOpen={setOpenFilters} />}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
-export default InterviewExperience
+export default Experiences

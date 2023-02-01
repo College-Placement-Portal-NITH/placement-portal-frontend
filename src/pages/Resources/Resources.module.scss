@@ -1,0 +1,11 @@
+.page_name {
+  font-size: var(--lg-heading);
+  font-weight: 600;
+  color: var(--text-color-primary);
+  padding: calc(2rem + var(--nav-height)) 2rem 0.8rem 2rem;
+
+  @media screen and (max-width: 520px) {
+    font-size: 28px;
+    padding: calc(1.5rem + var(--nav-height)) 1rem 0.5rem 1rem;
+  }
+}

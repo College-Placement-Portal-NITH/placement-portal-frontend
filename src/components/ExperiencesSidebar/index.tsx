@@ -1,5 +1,5 @@
 import { ExperiencesSidebarProps } from '../../utils/types'
-import InterviewExperienceFilters from '../InterviewExperienceFilters'
+import InterviewExperienceFilters from '../ExperiencesFilters'
 import styles from './ExperiencesSidebar.module.scss'
 
 function ExperiencesSidebar({ setIsSidebarOpen }: ExperiencesSidebarProps) {

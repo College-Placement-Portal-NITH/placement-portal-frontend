@@ -25,7 +25,7 @@ function Dashboard() {
                 return (
                   <Link key={listItem.id} className={styles.list_item} to={listItem.link}>
                     <div className={styles.pic}>
-                      <FontAwesomeIcon icon={faApple} color="lightBlue" size="lg" fixedWidth />
+                      <FontAwesomeIcon icon={faApple} color="lightBlue" size="1x" fixedWidth />
                     </div>
                     <div className={styles.info}>
                       <p className={styles.name}>{listItem.companyName}</p>
@@ -44,7 +44,7 @@ function Dashboard() {
                 return (
                   <Link key={listItem.id} className={styles.list_item} to={listItem.link}>
                     <div className={styles.pic}>
-                      <FontAwesomeIcon icon={faUser} color="grey" size="lg" fixedWidth />
+                      <FontAwesomeIcon icon={faUser} color="grey" size="1x" fixedWidth />
                     </div>
                     <div className={styles.info}>
                       <p className={styles.name}>{listItem.studentName}</p>

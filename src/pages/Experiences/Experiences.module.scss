@@ -1,0 +1,77 @@
+@use '../../index.scss' as main;
+
+.page_name {
+  font-size: var(--lg-heading);
+  font-weight: 600;
+  color: var(--text-color-primary);
+  padding: calc(2rem + var(--nav-height)) 2rem 0.8rem 2rem;
+
+  @media screen and (max-width: 520px) {
+    font-size: 28px;
+    line-height: 36px;
+    padding: calc(1.7rem + var(--nav-height)) 1rem 0.7rem 1rem;
+  }
+}
+
+.display {
+  display: flex;
+  padding: 1rem 2rem;
+  gap: 1.6rem;
+
+  .middle_right {
+    width: 270px;
+    flex-shrink: 0.2;
+    top: calc(var(--nav-height) + 1.6rem);
+    overflow-y: auto;
+    max-height: calc((100vh - var(--nav-height) - 3rem));
+    position: sticky;
+    z-index: 3;
+
+    @include main.thin-scrollbar;
+
+    @media screen and (max-width: 880px) {
+      display: none;
+    }
+  }
+
+  .right {
+    display: none;
+
+    @media screen and (max-width: 880px) {
+      display: flex;
+      float: right;
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      justify-content: center;
+      bottom: 0;
+      right: 0;
+      margin: 0px 10px 20px;
+      background-color: var(--custom-white-v1);
+      padding-top: 15px;
+
+      &:hover {
+        color: #aaa;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media screen and (max-width: 880px) {
+    gap: 0rem;
+  }
+
+  @media screen and (max-width: 525px) {
+    padding: 1rem;
+  }
+}
+
+.seperator {
+  height: 1px;
+  background-color: #cfd2cf;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

@@ -1,42 +1,37 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: auto;
-  padding: 10px;
-  border-radius: 10px;
   background-color: var(--custom-white-v1);
-  max-width: 1100px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 880px;
   transition: 0.5s ease-in-out;
 
   .main_container {
     display: flex;
-    flex-direction: row;
-    width: auto;
-    height: auto;
-    padding: 10px 0px;
-    margin: 0px 5px;
+    gap: 1.5rem;
+    align-items: center;
 
     .img {
-      width: 80px;
-      height: 80px;
-      border-radius: 100%;
-      align-self: center;
+      width: 96px;
+      height: 96px;
+      border-radius: 8px;
     }
 
     .info_container {
-      padding: 0px 0 0 40px;
-
       .title {
-        font-size: 25px;
-        margin-bottom: 0px;
-        align-content: flex-start;
+        font-size: var(--md-heading);
         font-weight: 600;
-        text-align: start;
+        color: var(--text-color-primary);
+        letter-spacing: -0.02em;
       }
 
       .role {
         font-size: 15px;
-        margin-bottom: 10px;
+        color: var(--text-color-primary);
+        padding-bottom: 10px;
         align-content: flex-start;
         font-weight: 600;
         text-align: start;
@@ -60,13 +55,12 @@
     margin-top: 1rem;
   }
 
-  .lower {
+  .tags_container {
     display: flex;
     justify-content: flex-start;
     flex-flow: wrap;
-    width: auto;
 
-    .lower_fields {
+    .tag {
       width: auto;
       margin: 10px 2px 0px 2px;
       padding: 2px 15px 0px 15px;
@@ -77,12 +71,9 @@
     }
   }
 
-  @media screen and (max-width: 1350px) {
-    margin-bottom: 1.5rem;
-  }
-
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 525px) {
     padding: 1rem;
+    margin-bottom: 1rem;
 
     .main_container {
       flex-direction: column;
@@ -97,13 +88,25 @@
         display: block;
 
         .title {
-          font-size: 22px;
+          font-size: 18px;
         }
 
-        .description {
-          font-size: 16px;
+        .role {
+          padding-bottom: 5px;
+        }
+
+        .truncate {
+          font-size: 14px;
         }
       }
+    }
+
+    .separator {
+      margin-top: 0.5rem;
+    }
+
+    .tags_container {
+      font-size: 14px;
     }
   }
 }

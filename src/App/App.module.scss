@@ -1,11 +1,8 @@
 .app {
-  .pages {
-    width: calc(100% - var(--sidebar-width));
-    margin-left: auto;
+  margin: auto;
 
-    @media screen and (max-width: 1350px) {
-      width: 100%;
-      margin: 0;
-    }
+  @media screen and (max-width: 1150px) {
+    width: 100%;
+    margin: 0;
   }
 }

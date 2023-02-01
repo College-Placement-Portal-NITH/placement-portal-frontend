@@ -2,18 +2,23 @@
   display: flex;
   flex-direction: column;
   background-color: var(--custom-white-v1);
-  padding: 1.25rem;
+  padding: 1rem;
+  padding-right: calc(1rem + 4px);
   border-radius: 10px;
 
+  &:hover {
+    padding-right: 1rem;
+  }
+
   h2 {
-    font-size: 24px;
-    color: rgb(40, 40, 40);
+    font-size: var(--md-heading);
+    color: var(--text-color-primary);
     font-weight: 600;
   }
 
   h4 {
-    font-size: 18px;
-    color: rgb(12, 12, 12);
+    font-size: 16px;
+    color: var(--text-color-primary);
     font-weight: 600;
   }
 
@@ -21,8 +26,7 @@
     height: 1px;
     background-color: #cfd2cf;
     border-radius: 5px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0 0.7rem 0;
   }
 
   .company {
@@ -33,8 +37,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding-bottom: 0.4rem;
+    padding-bottom: 4px;
 
     .modal {
       font-size: medium;
@@ -46,9 +49,9 @@
       .btn {
         background-color: #fff;
         border: 0;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 600;
-        color: rgb(40, 40, 40);
+        color: var(--text-color-primary);
         font-family: 'Poppins', sans-serif;
         display: flex;
         align-items: center;
@@ -65,6 +68,6 @@
   }
 
   .filter_category {
-    padding-bottom: 0.4rem;
+    padding-bottom: 4px;
   }
 }
