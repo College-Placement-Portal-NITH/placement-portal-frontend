@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { pastExperienceData, postsData, upcomingDriveData } from '../../utils/Data/dashboardData'
 import { Drive, PastExperienceSummary, Post } from '../../utils/types'
 import styles from './Dashboard.module.scss'
-import { DashboardPostCard } from '../../components/Cards'
+import DashboardCard from '../../components/Wireframes/DashboardCard'
 
 function Dashboard() {
   return (
@@ -14,7 +14,7 @@ function Dashboard() {
       <div className={styles.content}>
         <div className={styles.posts_container}>
           {postsData.map((post: Post) => {
-            return <DashboardPostCard {...post} key={post.id} />
+            return <DashboardCard key={post.id} />
           })}
         </div>
         <div className={styles.side_panel}>

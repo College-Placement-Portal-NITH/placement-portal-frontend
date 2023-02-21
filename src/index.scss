@@ -58,3 +58,14 @@ body {
 #root {
   min-height: 100vh;
 }
+
+@mixin animation-mixin {
+  @keyframes loading-animation {
+    0% {
+      background-color: hsl(0, 0%, 80%);
+    }
+    100% {
+      background-color: hsl(0, 0%, 97%);
+    }
+  }
+}
