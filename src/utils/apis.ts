@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { COMPANIES_API, DRIVES_API, STUDENT_API } from './constants'
+import { COMPANIES_API, DRIVES_API, EXPERIENCE_API, STUDENT_API } from './constants'
 
 export const studentAPI = axios.create({
   baseURL: STUDENT_API,
@@ -10,6 +10,13 @@ export const studentAPI = axios.create({
 
 export const drivesAPI = axios.create({
   baseURL: DRIVES_API,
+  headers: {
+    Authorization: `Bearer `,
+  },
+})
+
+export const experienceAPI = axios.create({
+  baseURL: EXPERIENCE_API,
   headers: {
     Authorization: `Bearer `,
   },
