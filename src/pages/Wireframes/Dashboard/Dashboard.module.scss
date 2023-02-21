@@ -2,15 +2,12 @@
 @include main.animation-mixin;
 
 .container {
-  .page_name {
-    padding: calc(2rem + var(--nav-height)) 2rem 0.8rem 2rem;
-    max-width: var(--max-w);
-    margin: auto;
+  padding: calc(2rem + var(--nav-height)) 0 0.8rem 0;
+  max-width: 1240px;
+  margin: auto;
 
-    @media screen and (max-width: 520px) {
-      font-size: 28px;
-      padding: calc(1.5rem + var(--nav-height)) 1rem 0.5rem 1rem;
-    }
+  @media screen and (max-width: 525px) {
+    padding: calc(1.5rem + var(--nav-height)) 1rem 0.5rem 1rem;
   }
 
   .content {
@@ -23,7 +20,7 @@
     margin: auto;
 
     .posts_container {
-      width: 55%;
+      width: 75%;
 
       @media screen and (max-width: 880px) {
         width: 100%;

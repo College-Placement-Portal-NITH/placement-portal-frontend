@@ -4,7 +4,6 @@ import DashboardCard from '../../../components/Wireframes/DashboardCard'
 function Dashboard() {
   return (
     <div className={styles.container}>
-      <div className={styles.page_name} />
       <div className={styles.content}>
         <div className={styles.posts_container}>
           <DashboardCard />

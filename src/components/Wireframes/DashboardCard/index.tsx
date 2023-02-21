@@ -1,6 +1,6 @@
 import styles from './DashboardCard.module.scss'
 
-function DashboardCard() {
+function DashboardWireframeCard() {
   return (
     <div className={styles.card}>
       <div className={styles.main_container}>
@@ -22,4 +22,4 @@ function DashboardCard() {
   )
 }
 
-export default DashboardCard
+export default DashboardWireframeCard

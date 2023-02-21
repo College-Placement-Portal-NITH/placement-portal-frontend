@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { faApple } from '@fortawesome/free-brands-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -5,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { pastExperienceData, postsData, upcomingDriveData } from '../../utils/Data/dashboardData'
 import { Drive, PastExperienceSummary, Post } from '../../utils/types'
 import styles from './Dashboard.module.scss'
-import DashboardCard from '../../components/Wireframes/DashboardCard'
+import DashboardWireframeCard from '../../components/Wireframes/DashboardCard'
+import { DashboardPostCard } from '../../components/Cards'
 
 function Dashboard() {
   return (
@@ -13,9 +15,20 @@ function Dashboard() {
       <h1 className={styles.page_name}>Dashboard</h1>
       <div className={styles.content}>
         <div className={styles.posts_container}>
-          {postsData.map((post: Post) => {
-            return <DashboardCard key={post.id} />
-          })}
+          <Suspense
+            fallback={
+              <div>
+                <DashboardWireframeCard />
+                <DashboardWireframeCard />
+                <DashboardWireframeCard />
+                <DashboardWireframeCard />
+              </div>
+            }
+          >
+            {postsData.map((post: Post) => {
+              return <DashboardPostCard key={post.id} {...post} />
+            })}
+          </Suspense>
         </div>
         <div className={styles.side_panel}>
           <div className={styles.sidepanel_card}>
