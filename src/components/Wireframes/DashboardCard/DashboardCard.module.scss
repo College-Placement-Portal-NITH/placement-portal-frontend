@@ -1,0 +1,105 @@
+@use '../../../index.scss' as main;
+@include main.animation-mixin;
+
+.card {
+  background-color: var(--custom-white-v1);
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 880px;
+
+  .main_container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+
+    .post_image {
+      width: 96px;
+      height: 96px;
+      border-radius: 8px;
+      animation: loading-animation 1s linear infinite alternate;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      height: 125px;
+      justify-content: center;
+      width: 85%;
+
+      .title {
+        width: 40%;
+        height: 20px;
+        border-radius: 15px;
+        animation: loading-animation 1s linear infinite alternate;
+      }
+
+      .description {
+        width: 100%;
+        height: 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-top: 8px;
+
+        .para_line {
+          width: 100%;
+          height: 15px;
+          border-radius: 15px;
+
+          animation: loading-animation 1s linear infinite alternate;
+        }
+      }
+    }
+  }
+
+  .time_stamp {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    .stamp {
+      width: 45px;
+      height: 12px;
+      animation: loading-animation 1s linear infinite alternate;
+      border-radius: 10px;
+    }
+  }
+
+  @media screen and (max-width: 525px) {
+    padding: 1rem 1rem 0.7rem 1rem;
+    margin-bottom: 1rem;
+
+    .main_container {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .post_image {
+        border-radius: 50%;
+      }
+
+      .content {
+        display: block;
+
+        .title {
+          font-size: 18px;
+          width: 95%;
+        }
+
+        .description {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .time_stamp {
+      font-size: 13px;
+    }
+  }
+}

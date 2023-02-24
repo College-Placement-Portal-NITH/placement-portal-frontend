@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { HeaderLayout } from '../components'
 import {
-  Dashboard,
+  // Dashboard,
   Profile,
   Experiences,
   StudentDetailsForm,
@@ -17,6 +17,8 @@ import {
   ResourceDetails,
   AnnouncementForm,
 } from '../pages'
+
+import Dashboard from '../pages/Wireframes/Dashboard'
 
 function App() {
   const { pathname } = useLocation()

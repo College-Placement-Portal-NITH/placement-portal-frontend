@@ -1,0 +1,103 @@
+@use '../../../index.scss' as main;
+@include main.animation-mixin;
+
+.container {
+  padding: calc(2rem + var(--nav-height)) 0 0.8rem 0;
+  max-width: 1240px;
+  margin: auto;
+
+  @media screen and (max-width: 525px) {
+    padding: calc(1.5rem + var(--nav-height)) 1rem 0.5rem 1rem;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+    gap: 1.6rem;
+    width: 100%;
+    margin: auto;
+
+    .posts_container {
+      width: 75%;
+
+      @media screen and (max-width: 880px) {
+        width: 100%;
+      }
+    }
+
+    .side_panel {
+      width: 270px;
+      position: sticky;
+      top: calc(var(--nav-height) + 1.6rem);
+      overflow-y: auto;
+      max-height: calc((100vh - var(--nav-height) - 3rem));
+      flex-shrink: 0.2;
+
+      @include main.thin-scrollbar;
+
+      .sidepanel_card {
+        background-color: rgb(254, 254, 254);
+        padding: 1rem;
+        border-radius: 8px;
+
+        .card_heading {
+          width: 60%;
+          height: 15px;
+          border-radius: 15px;
+          animation: loading-animation 1s linear infinite alternate;
+        }
+
+        &:last-child {
+          margin-top: 1.6rem;
+        }
+
+        .list_container {
+          padding-top: 5px;
+          .list_item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 0;
+
+            .pic {
+              width: 50px;
+              height: 40px;
+              border-radius: 8px;
+              animation: loading-animation 1s linear infinite alternate;
+            }
+
+            .info {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              .name {
+                width: 80%;
+                height: 0.75rem;
+                animation: loading-animation 1s linear infinite alternate;
+                border-radius: 8px;
+              }
+
+              .date {
+                width: 80%;
+                height: 0.75rem;
+                animation: loading-animation 1s linear infinite alternate;
+                border-radius: 8px;
+              }
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 880px) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 525px) {
+      padding: 1rem;
+    }
+  }
+}
