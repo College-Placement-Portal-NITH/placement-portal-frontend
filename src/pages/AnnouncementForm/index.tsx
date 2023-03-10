@@ -1,4 +1,4 @@
-import { Button, VStack, Text, Alert, AlertIcon } from '@chakra-ui/react'
+import { Button, VStack, Text } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useState } from 'react'
@@ -7,7 +7,7 @@ import ReactQuill from 'react-quill'
 import Animation from '../../assets/animations/95580-time-table.json'
 import Loading from '../../assets/animations/81544-rolling-check-mark.json'
 import 'react-quill/dist/quill.snow.css'
-import { Input, Select } from '../../components'
+import { Error, Input, Select } from '../../components'
 import styles from './AnnouncementForm.module.scss'
 
 const typeData = [
@@ -21,6 +21,7 @@ export default function AnnouncementForm() {
   const [value, setValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showAnimation, setShowAnimation] = useState(false)
+  const date = new Date()
 
   const formik = useFormik({
     initialValues: {
@@ -28,8 +29,8 @@ export default function AnnouncementForm() {
       type: '',
     },
     validationSchema: Yup.object().shape({
-      title: Yup.string().required('*Required'),
-      type: Yup.string().required('*Required'),
+      title: Yup.string().required('Title is required'),
+      type: Yup.string().required('Type is required'),
     }),
     onSubmit: (e, values) => {
       setIsLoading(!isLoading)
@@ -66,15 +67,30 @@ export default function AnnouncementForm() {
                   <Input
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
+                    name="session"
+                    value={formik.values.title}
+                    isDisabled
+                    placeholder={
+                      date.getMonth() > 5
+                        ? `${date.getFullYear().toString()}-${(date.getFullYear() + 1)
+                            .toString()
+                            .slice(2)}`
+                        : `${(date.getFullYear() - 1).toString()}-${date
+                            .getFullYear()
+                            .toString()
+                            .slice(2)}`
+                    }
+                  />
+
+                  <Input
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                     name="title"
                     placeholder="Title"
                     value={formik.values.title}
                   />
                   {formik.touched.title && formik.errors.title ? (
-                    <Alert borderRadius={5} status="error">
-                      <AlertIcon />
-                      {formik.errors.title}
-                    </Alert>
+                    <Error errorMessage={formik.errors.title} />
                   ) : null}
 
                   <Select
@@ -89,10 +105,7 @@ export default function AnnouncementForm() {
                     ))}
                   </Select>
                   {formik.touched.type && formik.errors.type ? (
-                    <Alert borderRadius={5} status="error">
-                      <AlertIcon />
-                      {formik.errors.type}
-                    </Alert>
+                    <Error errorMessage={formik.errors.type} />
                   ) : null}
 
                   <ReactQuill
