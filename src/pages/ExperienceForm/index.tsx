@@ -5,8 +5,9 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import jwtDecode from 'jwt-decode'
 import Lottie from 'lottie-react'
-import ReactQuill from 'react-quill'
+// import ReactQuill from 'react-quill'
 import { useNavigate } from 'react-router-dom'
+import MDEditor from '@uiw/react-md-editor'
 import Animation from '../../assets/animations/103081-yoga-2.json'
 import Loading from '../../assets/animations/81544-rolling-check-mark.json'
 import 'react-quill/dist/quill.snow.css'
@@ -73,6 +74,9 @@ export default function ExperienceForm() {
   const [company, setCompany] = useState([])
   const [roles, setRoles] = useState([])
   const [isClicked, setClicked] = useState(false)
+  const handleEditorChange = (event: React.SetStateAction<string>) => {
+    setValue(event)
+  }
 
   const navigate = useNavigate()
 
@@ -311,13 +315,15 @@ export default function ExperienceForm() {
                     <Error errorMessage={formik.errors.anonymity} />
                   ) : null}
 
-                  <ReactQuill
+                  <MDEditor value={value} onChange={(e) => handleEditorChange(e || ' ')} />
+                  <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+                  {/* <ReactQuill
                     theme="snow"
                     value={value}
                     onChange={(e) => setValue(e)}
                     onBlur={formik.handleBlur}
                     className={styles.description}
-                  />
+                  /> */}
 
                   {value.length < 50 ? (
                     <Text color="blackAlpha.800" fontSize="md">

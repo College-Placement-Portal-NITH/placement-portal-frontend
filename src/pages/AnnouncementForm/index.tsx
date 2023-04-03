@@ -4,7 +4,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useState } from 'react'
 import Lottie from 'lottie-react'
-import ReactQuill from 'react-quill'
+// import ReactQuill from 'react-quill'
+import MDEditor from '@uiw/react-md-editor'
 import Animation from '../../assets/animations/95580-time-table.json'
 import Loading from '../../assets/animations/81544-rolling-check-mark.json'
 import 'react-quill/dist/quill.snow.css'
@@ -59,6 +60,10 @@ export default function AnnouncementForm() {
       }
     },
   })
+
+  const handleEditorChange = (event: React.SetStateAction<string>) => {
+    setValue(event)
+  }
 
   return (
     <div className={styles.container}>
@@ -127,13 +132,16 @@ export default function AnnouncementForm() {
                     <Error errorMessage={formik.errors.type} />
                   ) : null}
 
-                  <ReactQuill
+                  <MDEditor value={value} onChange={(e) => handleEditorChange(e || ' ')} />
+                  <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+
+                  {/* <ReactQuill
                     theme="snow"
                     value={value}
                     onChange={(e) => setValue(e)}
                     onBlur={formik.handleBlur}
                     className={styles.description}
-                  />
+                  /> */}
 
                   {value.length <= 11 ? (
                     <Text color="blackAlpha.800" fontSize="md">
