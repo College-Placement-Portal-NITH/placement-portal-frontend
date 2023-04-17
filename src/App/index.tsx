@@ -25,6 +25,8 @@ import {
   Register,
   TPODashboard,
   CompanyWiseDetails,
+  SpocsStatistics,
+  SpocsCurrentDrives,
 } from '../pages'
 import {
   clearDataFromLocalStorage,
@@ -278,6 +280,26 @@ function App() {
           <ProtectedRoute>
             <HeaderLayout>
               <CompanyWiseDetails />
+            </HeaderLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/spocs-statistics"
+        element={
+          <ProtectedRoute>
+            <HeaderLayout>
+              <SpocsStatistics />
+            </HeaderLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/spocs-statistics/current-drives"
+        element={
+          <ProtectedRoute>
+            <HeaderLayout>
+              <SpocsCurrentDrives />
             </HeaderLayout>
           </ProtectedRoute>
         }
