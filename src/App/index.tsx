@@ -37,6 +37,7 @@ import {
 } from '../utils/functions'
 import ProtectedRoute from '../Routes/ProtectedRoute'
 import { refreshTokenAPI, studentLogoutAPI } from '../utils/apis'
+import UpdateCourses from '../pages/UpdateCourses'
 
 function App() {
   const { pathname } = useLocation()
@@ -142,6 +143,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ExperienceForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/update-courses"
+            element={
+              <ProtectedRoute>
+                <UpdateCourses />
               </ProtectedRoute>
             }
           />
