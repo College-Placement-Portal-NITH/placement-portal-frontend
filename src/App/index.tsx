@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import jwtDecode from 'jwt-decode'
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom'
 import { HeaderLayout } from '../components'
+import TprHeadForm from '../pages/TprHeadForm'
 import {
   Dashboard,
   Profile,
@@ -106,6 +107,7 @@ function App() {
       <Route path="/experience-form" element={<ExperienceForm />} />
       <Route path="/announcement-form" element={<AnnouncementForm />} />
       <Route path="/result-announcement" element={<ResultAnnouncement />} />
+      <Route path="/tpr-head-form" element={<TprHeadForm />} />
       <Route path="/create-drive" element={<CreateDriveForm />} />
       <Route
         path="/home"

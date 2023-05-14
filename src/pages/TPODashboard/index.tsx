@@ -99,7 +99,6 @@ function TPODashboard() {
 
   return (
     <>
-      {' '}
       <div className={styles.page_container}>
         <h1 className={styles.page_name}>Welcome Back!</h1>
         <div className={styles.filter_container}>

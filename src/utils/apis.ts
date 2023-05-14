@@ -122,10 +122,10 @@ export const refreshTokenAPI = axios.create({
 
 export const recentExperienceAPI = axios.create({
   baseURL: RECENT_EXPERIENCE_API,
-  })
-  
+})
+
 export const companyWiseStatisticsAPI = axios.create({
-  baseURL: COMPANY_WISE_STATS_API
+  baseURL: COMPANY_WISE_STATS_API,
 })
 
 studentAPI.interceptors.request.use((config) => {
