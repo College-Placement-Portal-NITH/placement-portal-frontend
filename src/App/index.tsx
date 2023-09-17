@@ -22,6 +22,7 @@ import {
   JNFForm,
   StudentData,
   CreateDriveForm,
+  AddDriveForm,
   TprDrives,
   Register,
   TPODashboard,
@@ -112,6 +113,7 @@ function App() {
       <Route path="/announcement-form" element={<AnnouncementForm />} />
       <Route path="/result-announcement" element={<ResultAnnouncement />} />
       <Route path="/create-drive" element={<CreateDriveForm />} />
+      <Route path="/add-drive" element={<AddDriveForm />} />
       <Route path="/jnf-form" element={<JNFForm />} />
       <Route path="/eligibility-percentage" element={<NextPlacementEligibilityPercentage />} />
       <Route path="/update-clusters" element={<UpdateClusters />} />

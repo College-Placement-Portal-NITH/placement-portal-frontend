@@ -115,7 +115,7 @@ function Drives() {
               ))}
             </div>
 
-            <Button onClick={addCluster} backgroundColor="white">
+            <Button onClick={addCluster}>
               <FontAwesomeIcon cursor="pointer" icon={faPlus} />
             </Button>
           </div>
@@ -124,7 +124,7 @@ function Drives() {
               <Input value={search} onChange={handleSearch} placeholder="Company" type="input" />
             </InputGroup>
           </div>
-          <Button onClick={onSearch} backgroundColor="white">
+          <Button onClick={onSearch}>
             <FontAwesomeIcon cursor="pointer" icon={faSearch} />
           </Button>
         </div>
@@ -139,26 +139,24 @@ function Drives() {
             </div>
           </div>
         ) : (
-          data.results.map((drive: any) =>
-            drive.job_roles.map((desc: any) => (
-              <DrivesCard
-                key={desc.id}
-                companyName={drive.company}
-                isAptitudeTest={drive.aptitude_test}
-                id={desc.id}
-                imgUrl={drive.image_url}
-                ctcOffered={desc.ctc}
-                startingDate={drive.starting_date}
-                modeOfHiring={drive.mode_of_hiring}
-                isPpt={drive.pre_placement_talk}
-                jobLocation={drive.job_location}
-                type={drive.job_type}
-                eligibleBatches={desc.eligible_batches}
-                jobProfile={desc.role}
-                cluster={desc.cluster}
-              />
-            )),
-          )
+          data.results.map((drive: any) => (
+            <DrivesCard
+              key={drive.id}
+              companyName={drive.company}
+              id={drive.id}
+              imgUrl={drive.image_url}
+              ctcOffered={drive.ctc}
+              startingDate={drive.starting_date}
+              modeOfHiring={drive.modeOfHiring}
+              isPpt={drive.pre_placement_talk}
+              jobLocation={drive.jobLocation}
+              type={drive.job_type}
+              eligibleBatches={drive.branches}
+              jobProfile={drive.jobProfile}
+              cluster={drive.cluster}
+              driveStatus={drive.drive_status}
+            />
+          ))
         )}
 
         {data.results.length !== 0 && (
