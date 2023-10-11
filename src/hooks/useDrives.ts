@@ -5,6 +5,7 @@ const getDrives = async (params: any) => {
   const response = await drivesAPI.get('/', {
     params,
   })
+  // console.log(response.data)
   return response.data
 }
 

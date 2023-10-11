@@ -24,7 +24,7 @@
   margin: auto;
 
   .side_panel {
-    width: 270px;
+    width: 110vb;
     position: sticky;
     top: calc(var(--nav-height) + 1.6rem);
     overflow-y: auto;
@@ -32,7 +32,6 @@
     flex-shrink: 0.2;
 
     @include main.thin-scrollbar;
-
     .sidepanel_card {
       background-color: rgb(254, 254, 254);
       padding: 1rem;

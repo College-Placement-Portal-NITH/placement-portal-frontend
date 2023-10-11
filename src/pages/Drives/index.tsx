@@ -24,7 +24,7 @@ import { Paginator } from '../../components'
 import { ClusterChosen } from '../../utils/types'
 import PageLoader from '../../components/PageLoader'
 
-function Drives() {
+function Drives({ user }) {
   const [page, setPage] = useState(1)
   const [company, setCompany] = useState('')
   const [clusters, setClusters] = useState<Array<ClusterChosen>>([])
@@ -80,6 +80,32 @@ function Drives() {
     return <Page500 />
   }
 
+  const renderDriveCard = (drive: any) => {
+    console.log(drive.drive_status)
+    if (drive.drive_status === 'Approved') {
+      return (
+        <DrivesCard
+          key={drive.id}
+          companyName={drive.company}
+          id={drive.id}
+          imgUrl={drive.image_url}
+          ctcOffered={drive.ctc}
+          startingDate={drive.starting_date}
+          modeOfHiring={drive.modeOfHiring}
+          isPpt={drive.pre_placement_talk}
+          jobLocation={drive.jobLocation}
+          type={drive.job_type}
+          eligibleBatches={drive.branches}
+          jobProfile={drive.jobProfile}
+          cluster={drive.cluster}
+          driveStatus={drive.drive_status}
+        />
+      )
+    }
+    return null
+  }
+
+  const drives = data.results.map((drive: any) => renderDriveCard(drive))
   return (
     <>
       <div className={styles.container}>
@@ -139,24 +165,27 @@ function Drives() {
             </div>
           </div>
         ) : (
-          data.results.map((drive: any) => (
-            <DrivesCard
-              key={drive.id}
-              companyName={drive.company}
-              id={drive.id}
-              imgUrl={drive.image_url}
-              ctcOffered={drive.ctc}
-              startingDate={drive.starting_date}
-              modeOfHiring={drive.modeOfHiring}
-              isPpt={drive.pre_placement_talk}
-              jobLocation={drive.jobLocation}
-              type={drive.job_type}
-              eligibleBatches={drive.branches}
-              jobProfile={drive.jobProfile}
-              cluster={drive.cluster}
-              driveStatus={drive.drive_status}
-            />
-          ))
+          drives
+          // data.results
+          //   .filer(user.user === 'tpo' || user.user === 'student')
+          //   .map((drive: any) => (
+          //     <DrivesCard
+          //       key={drive.id}
+          //       companyName={drive.company}
+          //       id={drive.id}
+          //       imgUrl={drive.image_url}
+          //       ctcOffered={drive.ctc}
+          //       startingDate={drive.starting_date}
+          //       modeOfHiring={drive.modeOfHiring}
+          //       isPpt={drive.pre_placement_talk}
+          //       jobLocation={drive.jobLocation}
+          //       type={drive.job_type}
+          //       eligibleBatches={drive.branches}
+          //       jobProfile={drive.jobProfile}
+          //       cluster={drive.cluster}
+          //       driveStatus={drive.drive_status}
+          //     />
+          //   ))
         )}
 
         {data.results.length !== 0 && (

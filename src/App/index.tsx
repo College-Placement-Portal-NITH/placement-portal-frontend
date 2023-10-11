@@ -153,7 +153,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <HeaderLayout>
-                      <Drives />
+                      <Drives user={{ user: 'student' }} />
                     </HeaderLayout>
                   </ProtectedRoute>
                 }
@@ -282,7 +282,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <HeaderLayout>
-                  <Drives />
+                  <Drives user={{ user: 'tpo' }} />
                 </HeaderLayout>
               </ProtectedRoute>
             }

@@ -115,7 +115,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className={styles.sidepanel_card}>
+          {/* <div className={styles.sidepanel_card}>
             <h1>Recent Experiences</h1>
             <div className={styles.list_container}>
               {isNotificationSuccess &&
@@ -133,7 +133,7 @@ function Dashboard() {
                   )
                 })}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
