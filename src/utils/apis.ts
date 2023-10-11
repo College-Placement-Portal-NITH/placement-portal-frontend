@@ -32,6 +32,7 @@ import {
   ON_CAMPUS_API,
   OFF_CAMPUS_API,
   PPO_API,
+  ADD_JD_API,
 } from './constants'
 import { getDataFromLocalStorage } from './functions'
 
@@ -161,6 +162,10 @@ export const addJnfAPI = axios.create({
 
 export const percentageEligibilityAPI = axios.create({
   baseURL: PERCENTAGE_ELIGIBILITY_API,
+})
+
+export const addJdAPI = axios.create({
+  baseURL: ADD_JD_API,
 })
 
 studentAPI.interceptors.request.use((config) => {

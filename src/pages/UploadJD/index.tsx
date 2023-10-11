@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
 import { nanoid } from 'nanoid'
+import { useFormik } from 'formik'
+import { Button, VStack, Text } from '@chakra-ui/react'
 import './UploadJD.module.scss'
+import { addJdAPI } from '../../utils/apis'
 
 interface FileUploaderProps {
   onNameChange: (name: string) => void
@@ -10,8 +14,8 @@ interface FileUploaderProps {
 
 function UploadJD({
   onNameChange,
-  onFilesChange,
-}: {
+}: // onFilesChange,
+{
   onNameChange: (name: string) => void
   onFilesChange: (files: File[]) => void
 }) {
@@ -20,7 +24,7 @@ function UploadJD({
 
   const onDrop = (acceptedFiles: File[]) => {
     setSelectedFiles((prev) => [...prev, ...acceptedFiles])
-    onFilesChange(selectedFiles)
+    // onFilesChange(selectedFiles)
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -41,8 +45,22 @@ function UploadJD({
     }
 
     setSelectedFiles((prev) => [...prev, ...Files])
-    onFilesChange(selectedFiles)
-    // onFilesChange(event.target.files as File[]);
+    // onFilesChange(selectedFiles)
+  }
+  const navigate = useNavigate()
+  const handleJDSubmit = async () => {
+    try {
+      const objToSend = {
+        files: selectedFiles,
+      }
+      console.log(objToSend)
+      await addJdAPI.post('/', objToSend)
+      setTimeout(() => {
+        navigate('/home')
+      }, 3000)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -51,14 +69,14 @@ function UploadJD({
         <div className="firstForm ">
           <label className="label1" htmlFor="input-2">
             Upload JD
-            <input
+            {/* <input
               type="file"
               id="input-2"
               name="fileInput"
               className="input1 input-file"
               // value={[...selectedFiles]}
               onChange={handleFilesChange}
-            />
+            /> */}
           </label>
 
           <div {...getRootProps({ className: 'dropzone dragNdrop' })}>
@@ -86,6 +104,17 @@ function UploadJD({
             {selectedFiles.map((file) => (
               <div key={nanoid()}>{file.name}</div>
             ))}
+          </div>
+          <div>
+            <button
+              // color="white"
+              // isLoading={formik.handleSubmit}
+              type="submit"
+              // isDisabled={!formik.isValid || value.length <= 11}
+              onClick={handleJDSubmit}
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

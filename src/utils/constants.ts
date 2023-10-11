@@ -33,6 +33,7 @@ export const ELIGIBLE_STUDENTS_API = import.meta.env.VITE_ELIGIBLE_STUDENTS_API
 export const ON_CAMPUS_API = import.meta.env.VITE_ON_CAMPUS_API
 export const OFF_CAMPUS_API = import.meta.env.VITE_OFF_CAMPUS_API
 export const PPO_API = import.meta.env.VITE_PPO_API
+export const ADD_JD_API = import.meta.env.VITE_ADD_JD_API
 
 // Boolean enum
 export const enum BooleanValue {
