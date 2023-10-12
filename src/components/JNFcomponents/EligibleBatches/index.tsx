@@ -2,7 +2,13 @@ import React from 'react'
 import styles from './JNFForm.module.scss'
 import Util from './Util'
 
-export default function EligibleBatches() {
+export default function EligibleBatches({
+  parentState,
+  handleParentStateChange,
+}: {
+  parentState: any
+  handleParentStateChange: React.Dispatch<any>
+}) {
   const BTechBranches = [
     { fullName: 'Computer Science & Engineering', shortName: 'cse' },
     { fullName: 'Electronics & Communication Engineering', shortName: 'ece' },
@@ -11,8 +17,8 @@ export default function EligibleBatches() {
     { fullName: 'Civil Engineering', shortName: 'ce' },
     { fullName: 'Chemical Engineering', shortName: 'che' },
     { fullName: 'Engineering Physics', shortName: 'ep' },
-    { fullName: 'Engineering Chemistry', shortName: 'ec' },
-    { fullName: 'Engineering Mathematics', shortName: 'em' },
+    { fullName: 'Material Science and Engineering', shortName: 'material' },
+    { fullName: 'Mathematics and Computing', shortName: 'math' },
   ]
 
   const DualDegreeBranches = [
@@ -167,7 +173,7 @@ export default function EligibleBatches() {
               />
             ))}
           </div>
-          <div className={`${styles.row}`}>
+          <div>
             <div className={`${styles.dept_heading}`}>Chemical Engineering</div>
           </div>
           <div>
@@ -236,7 +242,7 @@ export default function EligibleBatches() {
         <div className={`${styles.col} ${styles.col_1}`}>6</div>
         <div className={styles.col}>Master of Business Administration</div>
 
-        <div className={`${styles.col_3}`}>
+        <div>
           {MBA.map((branch) => (
             <Util key={branch.fullName} branchName={branch.fullName} shortName={branch.shortName} />
           ))}
@@ -246,7 +252,7 @@ export default function EligibleBatches() {
         <div className={`${styles.col} ${styles.col_1}`}>7</div>
         <div className={styles.col}>M. Sc(2-year course)</div>
 
-        <div className={`${styles.col_3}`}>
+        <div>
           {MSc.map((branch) => (
             <Util key={branch.fullName} branchName={branch.fullName} shortName={branch.shortName} />
           ))}

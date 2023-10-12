@@ -1,13 +1,21 @@
 .card {
-  background-color: var(--custom-white-v1);
   display: flex;
   flex-direction: column;
   padding: 1rem 1rem 0.5rem 1rem;
   margin-bottom: 2rem;
   border-radius: 8px;
   width: 100%;
-  max-width: 880px;
+  max-width: 65em;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.561);
+
+  box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(124, 121, 121, 0.18);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition: transform 0.3s ease;
 
   .main_container {
     display: flex;
@@ -15,8 +23,8 @@
     align-items: center;
 
     .post_image {
-      width: 96px;
-      height: 96px;
+      width: 4em;
+      height: 4em;
       border-radius: 8px;
     }
 
@@ -33,7 +41,8 @@
 
       .title {
         font-size: var(--md-heading);
-        font-weight: 500;
+        font-weight: 600;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: var(--text-color-primary);
         letter-spacing: -0.02em;
         padding-top: 0.6rem;
@@ -64,34 +73,59 @@
     text-align: end;
   }
 
-  @media screen and (max-width: 525px) {
-    padding: 1rem 1rem 0.7rem 1rem;
-    margin-bottom: 1rem;
+  &:hover {
+    // background: linear-gradient(45deg, #d4a299, #dab87a);
+    background: rgba(250, 250, 250, 0.972);
+    box-shadow: 0 300px 300px 0 rgba(31, 38, 135, 0.07);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(110, 108, 108, 0.434);
+    transform: translateX(-10px);
+  }
+}
 
-    .main_container {
-      flex-direction: column;
-      gap: 0.5rem;
+@media screen and (max-width: 1024px) {
+  .card {
+    max-width: 45em;
+  }
+}
 
-      .post_image {
-        border-radius: 50%;
-      }
+@media screen and (max-width: 767px) {
+  .card {
+    max-width: 38em;
+  }
+}
 
-      .content {
-        display: block;
+@media screen and (max-width: 480px) {
+  .card {
+    max-width: 20em;
+  }
 
-        .title {
-          font-size: 18px;
-          width: 95%;
-        }
+  .main_container {
+    flex-direction: row;
+    gap: 0.5rem;
 
-        .description {
-          font-size: 14px;
-        }
-      }
+    .post_image {
+      height: 1em;
+      width: 1em;
+      border-radius: 50%;
     }
 
-    .time_stamp {
-      font-size: 13px;
+    .content {
+      display: block;
+
+      .title {
+        font-size: 18px;
+        width: 95%;
+      }
+
+      .description {
+        font-size: 14px;
+      }
     }
+  }
+
+  .time_stamp {
+    font-size: 13px;
   }
 }

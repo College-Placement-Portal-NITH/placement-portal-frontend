@@ -10,10 +10,12 @@
   align-items: center;
 }
 .col_1 {
+  // max-width: 100px;
   padding-left: 20px;
 }
 .col_3 {
   display: block;
+  // margin: 20px 20px;
   padding: 20px 20px;
   border-left: 2px solid black;
   min-width: 515px;
@@ -63,13 +65,14 @@
 }
 .odd {
   background-color: #f2f2f2;
-
   border: 2px solid black;
 }
 .even {
   border-left: 2px solid black;
   border-right: 2px solid black;
   background-color: #ffffff;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .center {

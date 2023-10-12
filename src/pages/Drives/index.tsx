@@ -11,9 +11,18 @@ import {
   TagLabel,
   Tag,
   TagCloseButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  background,
 } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { nanoid } from 'nanoid'
+import { string } from 'yup'
 import { clusterOptions } from '../../utils/Data/formUIData'
 import NotFound from '../../assets/animations/94729-not-found.json'
 import { DrivesCard } from '../../components/Cards'
@@ -21,8 +30,9 @@ import styles from './Drives.module.scss'
 import useDrives from '../../hooks/useDrives'
 import Page500 from '../Page500'
 import { Paginator } from '../../components'
-import { ClusterChosen } from '../../utils/types'
+import { ClusterChosen, ModelProps } from '../../utils/types'
 import PageLoader from '../../components/PageLoader'
+// const logo = '/nithLogo.png'
 
 function Drives({ user }) {
   const [page, setPage] = useState(1)
@@ -53,25 +63,28 @@ function Drives({ user }) {
     setSearch(e.target.value)
   }
 
-  const handleClusterChange = (e: any) => {
-    setSelectedCluster(e.target.value)
-  }
+  // const handleClusterChange = (e: any) => {
+  //   setSelectedCluster(e.target.value)
+  // }
 
-  const handleMultiDelete = (idx: number) => {
-    const items = clusters.filter((item, index) => index !== idx)
-    setClusters(items)
-    extractCluster(items)
-  }
+  // const handleMultiDelete = (idx: number) => {
+  //   const items = clusters.filter((item, index) => index !== idx)
+  //   setClusters(items)
+  //   extractCluster(items)
+  // }
 
-  const addCluster = (e: any) => {
-    e.preventDefault()
-    if (e === '' || clusters.find((cluster) => cluster.id === selectedCluster)) {
-      return
-    }
-    const arr = [...clusters, { id: e, value: selectedCluster }]
-    setClusters(arr)
-    extractCluster(arr)
-  }
+  // const addCluster = (e: any) => {
+  //   e.preventDefault()
+  //   if (e === '' || clusters.find((cluster) => cluster.id === selectedCluster)) {
+  //     return
+  //   }
+  //   const arr = [...clusters, { id: e, value: selectedCluster }]
+  //   setClusters(arr)
+  //   extractCluster(arr)
+  // }
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [modelData, setModalData] = useState<ModelProps>({ title: '', description: '' })
 
   if (isLoading || !isSuccess) {
     return <PageLoader />
@@ -80,32 +93,14 @@ function Drives({ user }) {
     return <Page500 />
   }
 
-  const renderDriveCard = (drive: any) => {
-    console.log(drive.drive_status)
-    if (drive.drive_status === 'Approved') {
-      return (
-        <DrivesCard
-          key={drive.id}
-          companyName={drive.company}
-          id={drive.id}
-          imgUrl={drive.image_url}
-          ctcOffered={drive.ctc}
-          startingDate={drive.starting_date}
-          modeOfHiring={drive.modeOfHiring}
-          isPpt={drive.pre_placement_talk}
-          jobLocation={drive.jobLocation}
-          type={drive.job_type}
-          eligibleBatches={drive.branches}
-          jobProfile={drive.jobProfile}
-          cluster={drive.cluster}
-          driveStatus={drive.drive_status}
-        />
-      )
-    }
-    return null
+  const openModal = (drive: any) => {
+    setIsOpenModal(true)
+    setModalData(drive)
+  }
+  const closeModal = () => {
+    setIsOpenModal(false)
   }
 
-  const drives = data.results.map((drive: any) => renderDriveCard(drive))
   return (
     <>
       <div className={styles.container}>
@@ -165,27 +160,45 @@ function Drives({ user }) {
             </div>
           </div>
         ) : (
-          drives
-          // data.results
-          //   .filer(user.user === 'tpo' || user.user === 'student')
-          //   .map((drive: any) => (
-          //     <DrivesCard
-          //       key={drive.id}
-          //       companyName={drive.company}
-          //       id={drive.id}
-          //       imgUrl={drive.image_url}
-          //       ctcOffered={drive.ctc}
-          //       startingDate={drive.starting_date}
-          //       modeOfHiring={drive.modeOfHiring}
-          //       isPpt={drive.pre_placement_talk}
-          //       jobLocation={drive.jobLocation}
-          //       type={drive.job_type}
-          //       eligibleBatches={drive.branches}
-          //       jobProfile={drive.jobProfile}
-          //       cluster={drive.cluster}
-          //       driveStatus={drive.drive_status}
-          //     />
-          //   ))
+          data?.results?.map((drive: any) => (
+            <>
+              <DrivesCard
+                onClick={() => openModal(drive)}
+                key={drive.id}
+                driveID={drive.id}
+                user={user}
+                companyName={drive.company}
+                id={drive.id}
+                isAptitudeTest={drive.isAptitudeTest}
+                // imgUrl={drive.image_url}
+                ctcOffered={drive.ctc}
+                startingDate={drive.starting_date}
+                modeOfHiring={drive.modeOfHiring}
+                isPpt={drive.pre_placement_talk}
+                JobLocation={drive.jobLocation}
+                type={drive.job_type}
+                eligibleBatches={drive.branches}
+                jobProfile={drive.jobProfile}
+                cluster={drive.cluster}
+                driveStatus={drive.drive_status}
+              />
+              <Modal
+                key={nanoid()}
+                id={nanoid()}
+                scrollBehavior="inside"
+                isOpen={isOpenModal}
+                onClose={closeModal}
+                isCentered
+              >
+                <ModalOverlay backgroundColor="blackAlpha.300" />
+                <ModalContent className={styles.model_content}>
+                  <ModalHeader className={styles.modal_title}>{modelData.title}</ModalHeader>
+                  <ModalCloseButton className={styles.modal_close} />
+                  <ModalBody className={styles.modal_desc}>{modelData.description}</ModalBody>
+                </ModalContent>
+              </Modal>
+            </>
+          ))
         )}
 
         {data.results.length !== 0 && (

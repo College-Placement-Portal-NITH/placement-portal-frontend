@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Navbar_JNF.module.scss'
 import logo from '../../../assets/img/clg_logo.jpg'
 
-export default function NavbarJNF() {
+export default function NavbarJNF({ Title }: { Title: string }) {
   return (
     <div className={styles.navbar}>
       <div className={styles.center}>
@@ -32,9 +32,7 @@ export default function NavbarJNF() {
         <div className={`${styles.dash} ${styles.center}`}>
           -----------------------------------------------------------------------------------------------------------------------
         </div>
-        <div className={`${styles.heading} ${styles.center}`}>
-          Job Notification Form/Internship Form (Session: 2023-24)
-        </div>
+        <div className={`${styles.heading} ${styles.center}`}>{Title} (Session: 2023-24)</div>
       </div>
     </div>
   )

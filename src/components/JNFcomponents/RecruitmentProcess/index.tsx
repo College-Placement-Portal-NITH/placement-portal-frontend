@@ -1,4 +1,4 @@
-import Placement from './Placement'
 import Internship from './Internship'
+import Placement from './Placement'
 
 export { Placement, Internship }

@@ -19,7 +19,6 @@ export default function Login() {
           <TabList>
             <Tab>Student</Tab>
             <Tab>TPO</Tab>
-            <Tab>TPR</Tab>
           </TabList>
           <TabPanels minHeight="230px">
             <TabPanel>
@@ -27,9 +26,6 @@ export default function Login() {
             </TabPanel>
             <TabPanel>
               <TPOLoginForm />
-            </TabPanel>
-            <TabPanel>
-              <TPRLoginForm />
             </TabPanel>
           </TabPanels>
         </Tabs>

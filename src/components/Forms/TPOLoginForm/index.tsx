@@ -58,7 +58,7 @@ export default function TPOLoginForm() {
         setDataToLocalStorage('role', accessDecoded.role)
 
         if (accessDecoded.role === 'TPO') {
-          navigate('/tpo-dashboard')
+          navigate('/dashboard')
         }
       } catch (err: any) {
         toast({

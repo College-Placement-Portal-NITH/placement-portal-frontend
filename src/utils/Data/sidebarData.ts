@@ -36,7 +36,7 @@ export const navItemsStudent = [
   {
     id: 6,
     name: 'Announcements',
-    url: '/announcements',
+    url: '/announcement-form',
     icon: faUserNinja,
   },
 
@@ -49,7 +49,7 @@ export const navItemsStudent = [
 ]
 
 export const navItemsTPO = [
-  { id: 0, name: 'NoticeBoard', url: '/tpo-dashboard' },
+  { id: 0, name: 'NoticeBoard', url: '/dashboard' },
   {
     id: 1,
     name: 'Drives',
@@ -58,7 +58,7 @@ export const navItemsTPO = [
   {
     id: 2,
     name: 'Announcements',
-    url: '/announcements',
+    url: '/announcement-form',
   },
   {
     id: 3,

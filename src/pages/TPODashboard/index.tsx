@@ -17,7 +17,7 @@ import useTPOStats from '../../hooks/useTPOStats'
 
 function TPODashboard() {
   const [job, setJob] = useState('placement')
-  const [session, setSession] = useState('2022-23')
+  const [session, setSession] = useState('2023-24')
 
   const [searchedCompany, setSearchedCompany] = useState('')
 

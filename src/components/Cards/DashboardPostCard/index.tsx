@@ -12,7 +12,7 @@ function DashboardPostCard({ title, description, imageUrl, postedOn, onClick }: 
           <div className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />
         </div>
       </div>
-      <div className={styles.separator} />
+      {/* <div className={styles.separator} /> */}
       <span className={styles.time_stamp}>{postedOn}</span>
     </div>
   )

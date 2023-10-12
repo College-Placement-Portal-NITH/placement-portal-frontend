@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { DevTool } from '@hookform/devtools'
 import { Error } from '../../index'
-import './index.scss'
+import '../index.scss'
 // import {R} from react;
 
 const modeOfHiringData = [
@@ -34,7 +34,7 @@ type RecruitmentData = {
 
 const defaultData: RecruitmentData = {
   companyName: '',
-  session: '2024-25',
+  session: '2023-24',
   isPlacement: false,
   isIntern: true,
   JobDescription: '',
@@ -64,7 +64,13 @@ const validationSchema = Yup.object().shape({
     .max(10.0, 'Cuttoff should be less than 10.0'),
 })
 
-function Placement() {
+function Placement({
+  parentState,
+  setParentState,
+}: {
+  parentState: any
+  setParentState: React.Dispatch<any>
+}) {
   const form = useForm<any>({
     defaultValues: defaultData,
     resolver: yupResolver(validationSchema),
@@ -78,28 +84,27 @@ function Placement() {
   // const isIntern = form.watch('isIntern')
   const { errors } = formState
 
-  const onSubmit = (data: RecruitmentData) => {
-    console.log(data)
-  }
-
   return (
     <div className="root">
-      <form onSubmit={handleSubmit((d) => onSubmit(d))} noValidate className="form-group">
+      <form noValidate className="form-group">
         <div className="title">
           <h1> Internship Detail Form</h1>
         </div>
 
         <label className="label" htmlFor="companyName">
-          Company Name
+          Job Profile
           <input
             type="text"
             className="form-control"
             id="companyName"
-            {...form.register('companyName')}
+            onChange={(e) => {
+              setParentState({
+                ...parentState,
+                internProfile: e.target.value,
+              })
+            }}
           />
         </label>
-        {errors.companyName && <Error errorMessage={errors.companyName.message as string} />}
-
         <label className="label" htmlFor="session">
           Session
           <input
@@ -110,25 +115,20 @@ function Placement() {
           />
         </label>
 
-        <label className="label" htmlFor="modeOfHiring">
-          Mode of Hiring
-          <select className="form-control" id="modeOfHiring" {...form.register('modeOfHiring')}>
-            <option value="">Select Mode of Hiring</option>
-            {modeOfHiringData.map((modeOfHiring) => (
-              <option key={modeOfHiring.id} value={modeOfHiring.value}>
-                {modeOfHiring.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        {/** */}
-
         <label className="label" htmlFor="Stipend">
           Stipend Offered
-          <input type="text" className="form-control" id="Stipend" {...form.register('Stipend')} />
+          <input
+            type="text"
+            className="form-control"
+            id="Pay"
+            onChange={(e) =>
+              setParentState({
+                ...parentState,
+                internstipend: e.target.value,
+              })
+            }
+          />
         </label>
-        {errors.Stipend && <Error errorMessage={errors.Stipend.message as string} />}
 
         <label className="label" htmlFor="jobLocation">
           Job Location
@@ -136,7 +136,12 @@ function Placement() {
             type="text"
             className="form-control"
             id="jobLocation"
-            {...form.register('jobLocation')}
+            onChange={(e) =>
+              setParentState({
+                ...parentState,
+                internJobLocation: e.target.value,
+              })
+            }
           />
         </label>
         {errors.jobLocation && <Error errorMessage={errors.jobLocation.message as string} />}
@@ -147,14 +152,14 @@ function Placement() {
             type="date"
             className="form-control"
             id="tentativeDriveDate"
-            {...form.register('tentativeDriveDate', {
-              valueAsDate: true,
-            })}
+            onChange={(e) =>
+              setParentState({
+                ...parentState,
+                tentativeInternDate: e.target.value,
+              })
+            }
           />
         </label>
-        {errors.tentativeDriveDate && (
-          <Error errorMessage={errors.tentativeDriveDate.message as string} />
-        )}
       </form>
 
       <DevTool control={control} />

@@ -112,16 +112,19 @@ function TprDrives() {
               {data.results.map((drive: any) =>
                 drive.job_roles.map((desc: any) => (
                   <DrivesCard
+                    onClick={() => {}}
+                    driveID={drive.id}
+                    driveStatus={drive.drive_status}
                     key={desc.id}
                     companyName={drive.company}
                     isAptitudeTest={drive.aptitude_test}
                     id={desc.id}
-                    imgUrl={drive.image_url}
+                    // imgUrl={drive.image_url}
                     ctcOffered={desc.ctc}
                     startingDate={drive.starting_date}
                     modeOfHiring={drive.mode_of_hiring}
                     isPpt={drive.pre_placement_talk}
-                    jobLocation={drive.job_location}
+                    JobLocation={drive.job_location}
                     type={drive.job_type}
                     eligibleBatches={desc.eligible_batches}
                     jobProfile={desc.role}
@@ -134,14 +137,17 @@ function TprDrives() {
               <h1 className={styles.heading}>My Drives</h1>
               <div className={styles.separator} />
               <DrivesCard
+                onClick={() => {}}
+                driveID={1}
+                driveStatus="Pending"
                 companyName="Apple"
                 isAptitudeTest
                 id={1}
-                imgUrl="picsum.com/200"
+                // imgUrl="picsum.com/200"
                 ctcOffered={10}
                 startingDate="10-12-2020"
                 modeOfHiring="Online"
-                jobLocation="J"
+                JobLocation="J"
                 type="placement"
                 // eligibleBatches
                 jobProfile="SDE"
