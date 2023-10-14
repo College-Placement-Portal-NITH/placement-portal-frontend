@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import jwtDecode from 'jwt-decode'
+import { Button } from '@chakra-ui/react'
 import styles from './Profile.module.scss'
 import { FieldInfo } from '../../components'
 import { studentStatData } from '../../utils/Data/profileData'
@@ -7,7 +8,7 @@ import { ClusterCard } from '../../components/Cards'
 import useStudentDetails from '../../hooks/useStudentDetails'
 import PageLoader from '../../components/PageLoader'
 import Page500 from '../Page500'
-import { clustersAPI } from '../../utils/apis'
+import { clustersAPI, studentAPI } from '../../utils/apis'
 import { PlacementDataProps } from '../../utils/types'
 import { getDataFromLocalStorage } from '../../utils/functions'
 import { BASE_API_URL } from '../../utils/constants'
@@ -37,6 +38,8 @@ function Profile() {
   })
   const [isClusterDataFeteched, setIsClusterDataFetched] = useState(false)
   const [background, setBackground] = useState<number | null>(null)
+
+  const [updateResume, setUpdateResume] = useState('')
 
   function getRandomCoverGradient(): string {
     let backgroundIdx = null
@@ -71,6 +74,7 @@ function Profile() {
     try {
       const response = await clustersAPI.get(`/${roll}`)
       setPlacementData(response.data)
+      console.log(response.data)
       return response.data
     } catch (error) {
       console.log(error)
@@ -118,6 +122,67 @@ function Profile() {
         return 'Female'
       default:
         return 'Other'
+    }
+  }
+  const handleResumeChange = (e: any) => {
+    setUpdateResume(e.target.value)
+  }
+  const handleUpdateResume = async (e: any) => {
+    e.preventDefault()
+    // console.log(updateResume)
+    try {
+      const objToSend = {
+        id: data.id,
+        roll: accessDecoded.roll,
+        course_name: data.course_name,
+        branch: data.branch,
+        branchFullname: data.branchFullname,
+        branch_write: data.branch_write,
+        city: data.city,
+        city_write: data.city_write,
+        isBanned: data.isBanned,
+        state: data.state,
+        college_email: data.college_email,
+        eligiblity: data.eligibility,
+        class_12_domicile: data.class_12_domicile,
+        image_url: data.image_url,
+        first_name: data.first_name,
+        middle_name: data.middle_name,
+        last_name: data.last_name,
+        personal_email: data.personal_email,
+        gender: data.gender,
+        pnumber: data.pnumber,
+        dob: data.dob,
+        pincode: undefined,
+        batch_year: data.batch_year,
+        passing_year: data.passing_year,
+        current_year: data.passing_year,
+        category: data.category,
+        cgpi: 8,
+        gate_score: 100,
+        cat_score: 100,
+        class_10_year: 2018,
+        class_10_school: data.class_10_school,
+        class_10_board: data.class_10_board,
+        class_10_perc: 98,
+        class_12_year: 2020,
+        class_12_school: data.class_12_school,
+        class_12_board: data.class_12_board,
+        class_12_perc: 98,
+        active_backlog: 0,
+        total_backlog: 0,
+        jee_mains_rank: data.jee_mains_rank,
+        linkedin: data.linkedin,
+        pwd: data.pwd,
+        disability_type: data.disability_type,
+        gap_12_ug: data.gap_12_ug,
+        gap_ug_pg: data.gap_ug_pg,
+        banned_data: data.banned_data,
+        over_date: data.over_date,
+      }
+      await studentAPI.put(`/profile/${data.roll}/`, objToSend)
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -252,24 +317,51 @@ function Profile() {
               )}
             </div>
             <div className={styles.stats_container}>
-              <p className={styles.user_stats_title}>My Stats</p>
-              <div className={styles.user_stats_fields_container}>
+              <p className={styles.user_stats_title}>My Resume</p>
+              {/* <div className={styles.user_stats_fields_container}>
                 {studentStatData.map((info) => (
                   <FieldInfo key={info.id} label={info.label} value={info.value} />
                 ))}
-              </div>
+              </div> */}
               <div className={styles.profile}>
                 <a href={data.linkedin} className={styles.profile_link}>
                   LinkedIn Profile
                 </a>
               </div>
-              {data.eligibility.allowed_for !== 'NA' ? (
-                <div className={styles.profile}>
-                  <a href={data.eligibility.resume} className={styles.resume_link}>
-                    View Resume
-                  </a>
-                </div>
-              ) : null}
+              <div>
+                {data.eligibility.allowed_for !== 'NA' ? (
+                  <div className={styles.profile}>
+                    <a href={data.resume} className={styles.resume_link}>
+                      View Resume
+                    </a>
+                  </div>
+                ) : null}
+              </div>
+
+              <div className={styles.profile}>
+                <form onSubmit={handleUpdateResume}>
+                  <p className={styles.profile_link}>Update your Resume</p>
+                  <input
+                    id="resume"
+                    name="resume"
+                    color="RED"
+                    style={{
+                      border: '1px solid black',
+                      // display: 'inline-block',
+                      // position: 'relative',
+                      // left: '10%',
+                    }}
+                    onChange={handleResumeChange}
+                  />
+                  <button
+                    type="submit"
+                    // className={styles.add_btn}
+                    style={{ border: '1px solid black' }}
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
             </div>
             <div className={styles.address_container}>
               <p className={styles.address_title}>Competitive Exams</p>

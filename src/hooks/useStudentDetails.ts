@@ -3,6 +3,7 @@ import { studentAPI } from '../utils/apis'
 
 const getStudentDetails = async (roll: string) => {
   const response = await studentAPI.get(`/profile/${roll}/`)
+  console.log(response.data)
   return response.data
 }
 
