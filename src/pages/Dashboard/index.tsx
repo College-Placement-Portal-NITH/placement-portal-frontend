@@ -20,12 +20,12 @@ function Dashboard() {
   const [type] = useState('all')
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [modelData, setModalData] = useState<ModelProps>({ title: '', description: '' })
-  const {
-    data: notificationsData,
-    isSuccess: isNotificationSuccess,
-    isError: isNotificationError,
-    isLoading: isNotificationLoading,
-  } = useRecentNotifications()
+  // const {
+  //   data: notificationsData,
+  //   isSuccess: isNotificationSuccess,
+  //   isError: isNotificationError,
+  //   isLoading: isNotificationLoading,
+  // } = useRecentNotifications()
 
   const {
     data: dashboardData,
@@ -34,18 +34,18 @@ function Dashboard() {
     isLoading: isDashboardLoading,
   } = useDashboard({ type }, type)
 
-  if (isNotificationError || isDashboardError) {
-    return <Page500 />
-  }
+  // if (isNotificationError || isDashboardError) {
+  //   return <Page500 />
+  // }
 
-  if (
-    isNotificationLoading ||
-    !isNotificationSuccess ||
-    isDashboardLoading ||
-    !isDashboardSuccess
-  ) {
-    return <PageLoader />
-  }
+  // if (
+  //   isNotificationLoading ||
+  //   !isNotificationSuccess ||
+  //   isDashboardLoading ||
+  //   !isDashboardSuccess
+  // ) {
+  //   return <PageLoader />
+  // }
 
   const openModal = (post: any) => {
     setIsOpenModal(true)
@@ -60,41 +60,42 @@ function Dashboard() {
       <h1 className={styles.page_name}>Dashboard</h1>
       <div className={styles.content}>
         <div className={styles.posts_container}>
-          {isDashboardSuccess &&
-            dashboardData.map((post: any) => {
-              return (
-                <>
-                  <DashboardPostCard
-                    onClick={() => openModal(post)}
-                    description={post.description}
-                    title={post.title}
-                    postedOn={fromNow(post.created_at)}
-                    key={post.id}
-                    id={post.id}
-                    imageUrl={post.image_url}
-                  />
+          {isDashboardSuccess
+            ? dashboardData.map((post: any) => {
+                return (
+                  <>
+                    <DashboardPostCard
+                      onClick={() => openModal(post)}
+                      description={post.description}
+                      title={post.title}
+                      postedOn={fromNow(post.created_at)}
+                      key={post.id}
+                      id={post.id}
+                      imageUrl="/nithLogo.png"
+                    />
 
-                  <Modal
-                    key={post.id}
-                    id={post.id}
-                    scrollBehavior="inside"
-                    isOpen={isOpenModal}
-                    onClose={closeModal}
-                    isCentered
-                  >
-                    <ModalOverlay backgroundColor="blackAlpha.300" />
-                    <ModalContent>
-                      <ModalHeader>{modelData.title}</ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>{modelData.description}</ModalBody>
-                    </ModalContent>
-                  </Modal>
-                </>
-              )
-            })}
+                    <Modal
+                      key={post.id}
+                      id={post.id}
+                      scrollBehavior="inside"
+                      isOpen={isOpenModal}
+                      onClose={closeModal}
+                      isCentered
+                    >
+                      <ModalOverlay backgroundColor="blackAlpha.300" />
+                      <ModalContent className={styles.model_content}>
+                        <ModalHeader className={styles.modal_title}>{modelData.title}</ModalHeader>
+                        <ModalCloseButton className={styles.modal_close} />
+                        <ModalBody className={styles.modal_desc}>{modelData.description}</ModalBody>
+                      </ModalContent>
+                    </Modal>
+                  </>
+                )
+              })
+            : console.log('not success')}
         </div>
 
-        <div className={styles.side_panel}>
+        {/* <div className={styles.side_panel}>
           <div className={styles.sidepanel_card}>
             <h1>Recent Drives</h1>
             <div className={styles.list_container}>
@@ -134,7 +135,7 @@ function Dashboard() {
                 })}
             </div>
           </div>
-        </div>
+              </div> */}
       </div>
     </>
   )

@@ -20,9 +20,9 @@ export default function JNFFormOne({ onNext, data }: JNFFormOneProps) {
     validationSchema: Yup.object().shape({
       companyName: Yup.string().required('Company Name is Required'),
       session: Yup.string().required('Session is required'),
-      isPlacement: Yup.string().required('Placement Info is required'),
-      isSummerIntern: Yup.string().required('Summer Intern Info is required'),
-      isSixMonIntern: Yup.string().required('Six Months Intern Info is required'),
+      // isPlacement: Yup.string().required('Placement Info is required'),
+      // isSummerIntern: Yup.string().required('Summer Intern Info is required'),
+      // isSixMonIntern: Yup.string().required('Six Months Intern Info is required'),
       modeOfHiring: Yup.string().required('Mode of Hiring is required'),
       prePlacementTalk: Yup.string().required('Pre-Placement Talk Info is required'),
       aptitudeTest: Yup.string().required('Aptitude Test Info is required'),

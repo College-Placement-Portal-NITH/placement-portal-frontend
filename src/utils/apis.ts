@@ -17,6 +17,7 @@ import {
   STATISTICS_DETAILS_API,
   EXPERIENCES_API,
   STUDENT_LOGIN_API,
+  STUDENT_EXCEL_API,
   STUDENT_REGISTER_API,
   STUDENT_OTP_API,
   STUDENT_ELIGIBILITY_API,
@@ -37,6 +38,10 @@ import { getDataFromLocalStorage } from './functions'
 
 export const studentAPI = axios.create({
   baseURL: STUDENT_API,
+})
+
+export const studentEXCELAPI = axios.create({
+  baseURL: STUDENT_EXCEL_API,
 })
 
 export const drivesAPI = axios.create({
@@ -164,6 +169,12 @@ export const percentageEligibilityAPI = axios.create({
 })
 
 studentAPI.interceptors.request.use((config) => {
+  const newConfig = { ...config }
+  newConfig.headers.Authorization = `Bearer ${getDataFromLocalStorage('access_token')}`
+  return newConfig
+})
+
+studentEXCELAPI.interceptors.request.use((config) => {
   const newConfig = { ...config }
   newConfig.headers.Authorization = `Bearer ${getDataFromLocalStorage('access_token')}`
   return newConfig

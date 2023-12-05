@@ -25,3 +25,7 @@ dist-ssr
 
 # Environment files
 .env.*
+
+#lock files
+package-lock.json
+yarn.lock

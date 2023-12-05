@@ -11,9 +11,17 @@ import {
   TagLabel,
   Tag,
   TagCloseButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  background,
 } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { nanoid } from 'nanoid'
 import { clusterOptions } from '../../utils/Data/formUIData'
 import NotFound from '../../assets/animations/94729-not-found.json'
 import { DrivesCard } from '../../components/Cards'
@@ -21,8 +29,10 @@ import styles from './Drives.module.scss'
 import useDrives from '../../hooks/useDrives'
 import Page500 from '../Page500'
 import { Paginator } from '../../components'
-import { ClusterChosen } from '../../utils/types'
+import { ClusterChosen, ModelProps } from '../../utils/types'
 import PageLoader from '../../components/PageLoader'
+import DriveDetails from '../../components/DriveDetails'
+// const logo = '/nithLogo.png'
 
 function Drives() {
   const [page, setPage] = useState(1)
@@ -53,25 +63,29 @@ function Drives() {
     setSearch(e.target.value)
   }
 
-  const handleClusterChange = (e: any) => {
-    setSelectedCluster(e.target.value)
-  }
+  // const handleClusterChange = (e: any) => {
+  //   setSelectedCluster(e.target.value)
+  // }
 
-  const handleMultiDelete = (idx: number) => {
-    const items = clusters.filter((item, index) => index !== idx)
-    setClusters(items)
-    extractCluster(items)
-  }
+  // const handleMultiDelete = (idx: number) => {
+  //   const items = clusters.filter((item, index) => index !== idx)
+  //   setClusters(items)
+  //   extractCluster(items)
+  // }
 
-  const addCluster = (e: any) => {
-    e.preventDefault()
-    if (e === '' || clusters.find((cluster) => cluster.id === selectedCluster)) {
-      return
-    }
-    const arr = [...clusters, { id: e, value: selectedCluster }]
-    setClusters(arr)
-    extractCluster(arr)
-  }
+  // const addCluster = (e: any) => {
+  //   e.preventDefault()
+  //   if (e === '' || clusters.find((cluster) => cluster.id === selectedCluster)) {
+  //     return
+  //   }
+  //   const arr = [...clusters, { id: e, value: selectedCluster }]
+  //   setClusters(arr)
+  //   extractCluster(arr)
+  // }
+  console.log(data)
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [modelData, setModalData] = useState<any>(null)
 
   if (isLoading || !isSuccess) {
     return <PageLoader />
@@ -80,51 +94,26 @@ function Drives() {
     return <Page500 />
   }
 
+  const openModal = (drive: any) => {
+    setIsOpenModal(true)
+    setModalData(drive)
+  }
+  const closeModal = () => {
+    setIsOpenModal(false)
+  }
+
   return (
     <>
       <div className={styles.container}>
         <h1 className={styles.page_name}>Drives</h1>
         <div className={styles.filter_container}>
-          <div className={styles.dropdown}>
-            <Select
-              name="cluster"
-              placeholder="Choose Clusters"
-              onChange={handleClusterChange}
-              value={selectedCluster}
-              backgroundColor="white"
-            >
-              {clusterOptions.map((clust) => (
-                <option key={clust.value} value={clust.value}>
-                  {clust.label}
-                </option>
-              ))}
-            </Select>
-            <div className={styles.selected_clusters}>
-              {clusters.map((cluster: ClusterChosen, idx: number) => (
-                <Tag
-                  size="sm"
-                  key={cluster.value}
-                  borderRadius="full"
-                  variant="solid"
-                  justifySelf="center"
-                  colorScheme="gray"
-                >
-                  <TagLabel>Cluster {cluster.value}</TagLabel>
-                  <TagCloseButton onClick={() => handleMultiDelete(idx)} />
-                </Tag>
-              ))}
-            </div>
-
-            <Button onClick={addCluster} backgroundColor="white">
-              <FontAwesomeIcon cursor="pointer" icon={faPlus} />
-            </Button>
-          </div>
+          <div className={styles.dropdown} />
           <div className={styles.search_box}>
             <InputGroup>
               <Input value={search} onChange={handleSearch} placeholder="Company" type="input" />
             </InputGroup>
           </div>
-          <Button onClick={onSearch} backgroundColor="white">
+          <Button onClick={onSearch}>
             <FontAwesomeIcon cursor="pointer" icon={faSearch} />
           </Button>
         </div>
@@ -139,26 +128,42 @@ function Drives() {
             </div>
           </div>
         ) : (
-          data.results.map((drive: any) =>
-            drive.job_roles.map((desc: any) => (
+          data?.results?.map((drive: any) => (
+            <>
               <DrivesCard
-                key={desc.id}
+                onClick={() => openModal(drive)}
+                key={drive.id}
                 companyName={drive.company}
-                isAptitudeTest={drive.aptitude_test}
-                id={desc.id}
-                imgUrl={drive.image_url}
-                ctcOffered={desc.ctc}
+                id={drive.id}
+                // imgUrl={drive.image_url}
+                ctcOffered={drive.ctc}
                 startingDate={drive.starting_date}
-                modeOfHiring={drive.mode_of_hiring}
+                modeOfHiring={drive.modeOfHiring}
                 isPpt={drive.pre_placement_talk}
-                jobLocation={drive.job_location}
+                jobLocation={drive.jobLocation}
                 type={drive.job_type}
-                eligibleBatches={desc.eligible_batches}
-                jobProfile={desc.role}
-                cluster={desc.cluster}
+                eligibleBatches={drive.branches}
+                jobProfile={drive.jobProfile}
+                cluster={drive.cluster}
+                driveStatus={drive.drive_status}
               />
-            )),
-          )
+              <Modal
+                key={nanoid()}
+                id={nanoid()}
+                scrollBehavior="inside"
+                isOpen={isOpenModal}
+                onClose={closeModal}
+                isCentered
+              >
+                <ModalOverlay backgroundColor="blackAlpha.300" />
+                <ModalContent className={styles.model_content} maxWidth={700}>
+                  <ModalBody className={styles.modal_desc}>
+                    <DriveDetails {...modelData} />
+                  </ModalBody>
+                </ModalContent>
+              </Modal>
+            </>
+          ))
         )}
 
         {data.results.length !== 0 && (
@@ -177,3 +182,36 @@ function Drives() {
 }
 
 export default Drives
+
+// <div className={styles.company_info_1}>
+// <Tag className={styles.tag}>starting Date : {drive.starting_date}</Tag>
+// <Tag className={styles.tag}>{drive.jobProfile}</Tag>
+// <Tag className={styles.tag}>{drive.ctc} LPA</Tag>
+// <Tag className={styles.tag}>Job Type: {drive.job_type}</Tag>
+// <Tag className={styles.tag}>Mode of Hiring: {drive.modeOfHiring}</Tag>
+// </div>
+// <div className={styles.company_info_2}>
+// <Tag className={styles.tag}>Job Location: {drive.jobLocation}</Tag>
+// </div>
+// <div className={styles.company_info_2}>
+// {drive.pre_placement_talk && <Tag className={styles.tag}>PPT</Tag>}
+// {drive.aptitudeTest && <Tag className={styles.tag}>Aptitude Test</Tag>}
+// {drive.technicalTest && <Tag className={styles.tag}>Technical Test</Tag>}
+// {drive.groupDiscussion && (
+//   <Tag className={styles.tag}>Group Discussion</Tag>
+// )}
+// {drive.PersonalInterview && (
+//   <Tag className={styles.tag}>personal Interview</Tag>
+// )}
+// </div>
+// <Tag className={styles.tag}>Drive status: {drive.drive_status}</Tag>
+// <div className={styles.company_info_2}>
+// <Tag className={styles.heading}>Eligible Branches:</Tag>
+// <span className={styles.branches}>
+//   {drive.branches.map((branch: string) => (
+//     <Tag className={styles.tag} key={branch}>
+//       {branch}
+//     </Tag>
+//   ))}
+// </span>
+// </div>

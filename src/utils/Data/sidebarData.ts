@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 export const navItemsStudent = [
-  { id: 0, name: 'Dashboard', url: '/dashboard', icon: faHome },
+  { id: 0, name: 'NoticeBoard', url: '/dashboard', icon: faHome },
   {
     id: 1,
     name: 'Drives',
@@ -34,6 +34,13 @@ export const navItemsStudent = [
     icon: faFolderOpen,
   },
   {
+    id: 6,
+    name: 'Announcements',
+    url: '/announcement-form',
+    icon: faUserNinja,
+  },
+
+  {
     id: 5,
     name: 'Profile',
     url: '/profile',
@@ -42,7 +49,7 @@ export const navItemsStudent = [
 ]
 
 export const navItemsTPO = [
-  { id: 0, name: 'Dashboard', url: '/tpo-dashboard' },
+  { id: 0, name: 'NoticeBoard', url: '/dashboard' },
   {
     id: 1,
     name: 'Drives',
@@ -50,8 +57,8 @@ export const navItemsTPO = [
   },
   {
     id: 2,
-    name: 'Experiences',
-    url: '/experiences',
+    name: 'Announcements',
+    url: '/announcement-form',
   },
   {
     id: 3,
@@ -60,11 +67,16 @@ export const navItemsTPO = [
   },
   {
     id: 4,
+    name: 'Experiences',
+    url: '/experiences',
+  },
+  {
+    id: 5,
     name: 'Resources',
     url: '/resources',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Profile',
     url: '/profile',
   },

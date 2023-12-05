@@ -14,7 +14,9 @@ export default function MultiSelectDropDown({
       <Box maxW={200}>
         <Select
           backgroundColor="white"
-          onClick={(e: any) => onClick(e.target.value)}
+          onClick={(e: any) => {
+            onClick(e.target.value)
+          }}
           placeholder={placeholder}
         >
           {clusterData.map((data) => (

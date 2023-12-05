@@ -11,7 +11,8 @@ import Loading from '../../../assets/animations/81544-rolling-check-mark.json'
 import 'react-quill/dist/quill.snow.css'
 import { Error, Input, Select } from '../..'
 import styles from './ResultForms.module.scss'
-import { allStudentData, typeData } from '../../../utils/Data/resultAnnouncementData'
+// import { allStudentData, typeData } from '../../../utils/Data/resultAnnouncementData'
+import { typeData } from '../../../utils/Data/resultAnnouncementData'
 import { companiesAPI, rolesAPI, offCampusAPI } from '../../../utils/apis'
 import { Company } from '../../../utils/types'
 
@@ -53,13 +54,13 @@ export default function OffCampusResultForm() {
       }
 
       try {
-        const res = await offCampusAPI.post('/', objToSend)
+        // const res = await offCampusAPI.post('/', objToSend)
         setShowAnimation(!showAnimation)
         setTimeout(() => {
           navigate('/tpo-dashboard')
         }, 2000)
       } catch (err) {
-        console.log(err)
+        // console.log(err)
       }
     },
   })

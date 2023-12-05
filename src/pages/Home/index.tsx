@@ -26,16 +26,16 @@ function Home() {
               benefits both students and the TPO team in their efforts to achieve successful
               placements.
             </p>
-            <div className={styles.button}>
+            {/* <div className={styles.button}>
               <Button variant="solid" rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
                 <Link to="/jnf-form">JNF FORM</Link>
               </Button>
-              <Link to="/login">
+              <Link to="/upload_jd">
                 <Button variant="outline" rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
-                  STUDENT PORTAL
+                  UPLOAD JD
                 </Button>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <img className={styles.campus_picture} src="/nitHamirpur.webp" alt="campus_picture" />

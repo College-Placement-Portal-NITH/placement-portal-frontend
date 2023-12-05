@@ -1,6 +1,7 @@
 // API URLs
 export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL
 export const STUDENT_API = import.meta.env.VITE_STUDENT_API
+export const STUDENT_EXCEL_API = import.meta.env.VITE_STUDENT_EXCEL_API
 export const EXPERIENCES_API = import.meta.env.VITE_EXPERIENCES_API
 export const DRIVES_API = import.meta.env.VITE_DRIVES_API
 export const COMPANIES_LIST_API = import.meta.env.VITE_COMPANIES_LIST_API

@@ -9,6 +9,21 @@ export type NavItem = {
   icon: IconDefinition
 }
 
+export type Steps = {
+  label: string
+  id: number
+}
+
+export interface OfferedDrive {
+  offerPlacement: boolean
+  offerInternship: boolean
+}
+
+export interface ActiveStep {
+  id: number
+  label: string
+}
+
 export interface SidebarLayoutProps {
   children: ReactNode
 }
@@ -62,7 +77,7 @@ export type InputProps = {
   value: string | number | undefined
   onChange: (e: ChangeEvent<any>) => void
   onBlur: (e: ChangeEvent<any>) => void
-  type?: 'text' | 'password' | 'date' | 'file' | 'number'
+  type?: 'text' | 'password' | 'date' | 'file' | 'number' | 'email'
   isDisabled?: boolean
 }
 
@@ -142,19 +157,21 @@ interface EligibleBatchesObj {
   id: number
 }
 export interface DrivesCardProps {
+  onClick: () => void
   id: number
   companyName: string
-  imgUrl: string
+  // imgUrl: string
   ctcOffered: number
   startingDate: string
   modeOfHiring: string
-  isAptitudeTest: boolean
+  // isAptitudeTest: boolean
   isPpt: boolean
   jobLocation: string
   type: string
   eligibleBatches?: Array<EligibleBatchesObj>
   jobProfile: string
   cluster: number
+  driveStatus: string
 }
 
 export interface ClusterType {
@@ -380,11 +397,29 @@ export interface MultiSelectDropDownData {
   value: string
   label: string
 }
+export interface CourseData {
+  id: string
+  name: string
+  year: number
+}
+export interface BranchData {
+  id: string
+  name: string
+}
 
 export interface ClusterChosen {
   id: string | number
   value: string | number
 }
+export interface CourseChosen {
+  id: string | number
+  value: string
+}
+export interface BranchChosen {
+  id: string | number
+  value: string
+}
+
 export interface MultiSelectDropDownProps {
   placeholder: string
   clusterData: Array<MultiSelectDropDownData>

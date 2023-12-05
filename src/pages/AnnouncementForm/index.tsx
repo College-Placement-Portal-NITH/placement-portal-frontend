@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, VStack, Text } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useState } from 'react'
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react'
 import Lottie from 'lottie-react'
 import ReactQuill from 'react-quill'
 import Animation from '../../assets/animations/95580-time-table.json'
@@ -11,24 +11,25 @@ import 'react-quill/dist/quill.snow.css'
 import { Error, Input, Select } from '../../components'
 import styles from './AnnouncementForm.module.scss'
 import { dashboardAPI } from '../../utils/apis'
-
+import useCompanies from '../../hooks/useCompanyList'
+// const { data, isSuccess, isError, isLoading } = useCompanies() // hook call for company details
 const typeData = [
   { id: 16, value: 'General' },
-  { id: 17, value: 'Company' },
+  // { id: 17, value: 'Company' },
 ]
 
 export default function AnnouncementForm() {
   const [value, setValue] = useState('')
-  const [isLoading] = useState(false)
   const [showAnimation, setShowAnimation] = useState(false)
   const date = new Date()
-
+  // const { data, isSuccess, isError, isLoading } = useCompanies() // hook call for company details
   const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
       title: '',
       type: '',
+      // company: '',
       session:
         date.getMonth() <= 5
           ? `${(date.getFullYear() - 1).toString()}-${date.getFullYear().toString().slice(2)}`
@@ -37,6 +38,7 @@ export default function AnnouncementForm() {
     validationSchema: Yup.object().shape({
       title: Yup.string().required('Title is required'),
       type: Yup.string().required('Type is required'),
+      // company: Yup.string().required('Company is required'),
     }),
     onSubmit: async (values) => {
       try {
@@ -45,6 +47,7 @@ export default function AnnouncementForm() {
           session: values.session,
           type: values.type.toLowerCase(),
           description: value,
+          // company: values.company,
         }
         await dashboardAPI.post('/', objToSend)
 
@@ -57,6 +60,8 @@ export default function AnnouncementForm() {
       }
     },
   })
+
+  // console.log(companyData)
 
   return (
     <div className={styles.container}>
@@ -117,13 +122,28 @@ export default function AnnouncementForm() {
                     name="type"
                     placeholder="Type"
                   >
-                    {typeData.map((data) => (
-                      <option key={data.id}>{data.value}</option>
+                    {typeData.map((type) => (
+                      <option key={type.id}>{type.value}</option>
                     ))}
                   </Select>
                   {formik.touched.type && formik.errors.type ? (
                     <Error errorMessage={formik.errors.type} />
                   ) : null}
+
+                  {/* <Select
+                    value={formik.values.company}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    name="company"
+                    placeholder="Company"
+                  >
+                    {data?.map((company: { id: Key | number; name: string; logo: string }) => (
+                      <option key={company.id}>{company.name}</option>
+                    ))}
+                  </Select>
+                  {formik.touched.company && formik.errors.company ? (
+                    <Error errorMessage={formik.errors.company} />
+                  ) : null} */}
 
                   <ReactQuill
                     theme="snow"
