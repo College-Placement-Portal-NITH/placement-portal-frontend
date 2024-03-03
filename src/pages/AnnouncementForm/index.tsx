@@ -4,13 +4,14 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useState } from 'react'
 import Lottie from 'lottie-react'
-import ReactQuill from 'react-quill'
+// import ReactQuill from 'react-quill'
 import Animation from '../../assets/animations/95580-time-table.json'
 import Loading from '../../assets/animations/81544-rolling-check-mark.json'
 import 'react-quill/dist/quill.snow.css'
 import { Error, Input, Select } from '../../components'
 import styles from './AnnouncementForm.module.scss'
 import { dashboardAPI } from '../../utils/apis'
+import MDEditor from '@uiw/react-md-editor';
 
 const typeData = [
   { id: 16, value: 'General' },
@@ -57,6 +58,9 @@ export default function AnnouncementForm() {
       }
     },
   })
+  const handleEditorChange = (event: React.SetStateAction<string>) => {
+    setValue(event)
+  }
 
   return (
     <div className={styles.container}>
@@ -124,14 +128,19 @@ export default function AnnouncementForm() {
                   {formik.touched.type && formik.errors.type ? (
                     <Error errorMessage={formik.errors.type} />
                   ) : null}
-
+{/* 
                   <ReactQuill
                     theme="snow"
                     value={value}
                     onChange={(e) => setValue(e)}
                     onBlur={formik.handleBlur}
                     className={styles.description}
-                  />
+                  /> */}
+                    <MDEditor
+                      value={value}
+                      onChange={ e => handleEditorChange(e || ' ')}
+                    />  
+                     <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
 
                   {value.length <= 11 ? (
                     <Text color="blackAlpha.800" fontSize="md">
