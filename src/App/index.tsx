@@ -31,6 +31,7 @@ import {
   UpdateClusters,
   SlotPostForm,
   AllSlots,
+  viewSlotsBookedByStudent,
 } from '../pages'
 import {
   clearDataFromLocalStorage,
@@ -46,6 +47,7 @@ import ProtectedRoute from '../Routes/ProtectedRoute'
 import { refreshTokenAPI, studentLogoutAPI } from '../utils/apis'
 import { Role } from '../utils/constants'
 import UploadJD from '../pages/UploadJD'
+import ViewSlotsBookedByStudent from '../pages/viewSlotsBookedByStudent'
 
 function App() {
   const { pathname } = useLocation()
@@ -123,6 +125,14 @@ function App() {
       <Route path="/upload_jd" element={<UploadJD />} />
       <Route path="/student-resume" element={<StudentResume />} />
       <Route path="/all-Slots" element={<AllSlots />} />
+      <Route
+        path="/view-slots-booked-by-student"
+        element={
+          <HeaderLayout>
+            <ViewSlotsBookedByStudent />
+          </HeaderLayout>
+        }
+      />
       <Route
         path="/home"
         element={

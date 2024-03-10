@@ -27,3 +27,4 @@ export { default as NextPlacementEligibilityPercentage } from './NextPlacementEl
 export { default as UpdateClusters } from './UpdateClusters'
 export { default as SlotPostForm } from './SlotPostForm'
 export { default as AllSlots } from './AllSlots'
+export { default as viewSlotsBookedByStudent } from './viewSlotsBookedByStudent'
