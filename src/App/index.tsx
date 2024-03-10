@@ -124,7 +124,12 @@ function App() {
       <Route path="/update-clusters" element={<UpdateClusters />} />
       <Route path="/upload_jd" element={<UploadJD />} />
       <Route path="/student-resume" element={<StudentResume />} />
-      <Route path="/all-Slots" element={<AllSlots />} />
+      <Route
+      path="/all-Slots" 
+      element={
+        <HeaderLayout>
+          <AllSlots />
+        </HeaderLayout>} />
       <Route
         path="/view-slots-booked-by-student"
         element={
